@@ -162,6 +162,12 @@ Reach out for more details:
 | **Telegram** | [@Go_gf](https://t.me/Go_gf) |
 | **Email** | [azrazr351@gmail.com](mailto:azrazr351@gmail.com) |
 
+### Custom Development
+
+Need a **custom-built tool** tailored to your specific requirements? I develop advanced, production-grade software solutions on demand. Whether it's a specialized engine, a private toolkit, or a fully bespoke system — let's discuss what we can build together.
+
+> I'm always open to ambitious projects and innovative collaborations. Don't hesitate to reach out.
+
 ---
 
 ## License
