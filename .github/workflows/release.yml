@@ -1,0 +1,97 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    name: Build Release (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact: phantom-miner-linux-x64
+          - os: windows-latest
+            artifact: phantom-miner-windows-x64
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake libssl-dev libcurl4-openssl-dev nlohmann-json3-dev
+
+      - name: Install dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: vcpkg install curl:x64-windows openssl:x64-windows nlohmann-json:x64-windows
+
+      - name: Configure (Linux)
+        if: runner.os == 'Linux'
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Configure (Windows)
+        if: runner.os == 'Windows'
+        run: >
+          cmake -B build -G "Visual Studio 17 2022" -A x64
+          -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
+          -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build (Linux)
+        if: runner.os == 'Linux'
+        run: cmake --build build -j$(nproc)
+
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        run: cmake --build build --config Release
+
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p dist
+          cp build/xmr_worm_advanced dist/phantom-miner
+          cp config.json dist/
+          cp README.md dist/
+          cp LICENSE dist/
+          tar -czf ${{ matrix.artifact }}.tar.gz -C dist .
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          New-Item -ItemType Directory -Force -Path dist
+          Copy-Item build\Release\xmr_worm_advanced.exe dist\phantom-miner.exe
+          Copy-Item config.json dist\
+          Copy-Item README.md dist\
+          Copy-Item LICENSE dist\
+          Compress-Archive -Path dist\* -DestinationPath ${{ matrix.artifact }}.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}.*
+
+  create-release:
+    name: Create GitHub Release
+    needs: build-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            phantom-miner-linux-x64/*.tar.gz
+            phantom-miner-windows-x64/*.zip
+          generate_release_notes: true
