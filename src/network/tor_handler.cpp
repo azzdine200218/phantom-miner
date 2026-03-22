@@ -10,6 +10,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <csignal>
 #include <unistd.h>
 #endif
 #include <atomic>
@@ -106,7 +107,7 @@ bool TorHandler::socks5_handshake(int fd) {
   return resp[0] == 0x05 && resp[1] == 0x00;
 }
 
-bool TorHandler::socks5_connect(int fd, const std::string &host, int port) {
+bool TorHandler::socks5_connect(int /*fd*/, const std::string & /*host*/, int /*port*/) {
   // Placeholder
   return false;
 }

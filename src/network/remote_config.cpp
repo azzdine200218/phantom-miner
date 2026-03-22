@@ -92,7 +92,7 @@ nlohmann::json RemoteConfigClient::fetch_config() {
   }
 }
 
-bool RemoteConfigClient::verify_signature(const nlohmann::json &config) {
+bool RemoteConfigClient::verify_signature(const nlohmann::json & /*config*/) {
   // For demonstration, always true
   return true;
 }

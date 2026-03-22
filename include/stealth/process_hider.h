@@ -43,9 +43,9 @@
     bool is_injected() const;
 
   private:
-    std::string m_original_name;
     bool m_hidden;
     bool m_injected;
+    std::string m_original_name;
   };
 
 } // namespace Stealth
