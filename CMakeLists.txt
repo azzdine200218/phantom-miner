@@ -93,8 +93,8 @@ target_include_directories(xmr_worm_advanced PRIVATE
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(xmr_worm_advanced PRIVATE
         -Wall -Wextra -Wpedantic
-        -fno-rtti -fno-exceptions
-        $<$<CONFIG:Release>:-O3 -march=native -mtune=native -flto -fomit-frame-pointer -funroll-loops>
+        -fno-rtti
+        $<$<CONFIG:Release>:-O3 -flto -fomit-frame-pointer -funroll-loops>
         $<$<CONFIG:Debug>:-O0 -g -DDEBUG>
     )
 
@@ -129,6 +129,7 @@ endif()
 
 if(HAVE_NUMA)
     target_link_libraries(xmr_worm_advanced PRIVATE ${NUMA_LIBRARY})
+    target_compile_definitions(xmr_worm_advanced PRIVATE HAVE_NUMA)
 endif()
 
 if(ENABLE_CUDA)

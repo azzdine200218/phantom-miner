@@ -7,10 +7,12 @@
 #include <windows.h>
 #else
 #include <fcntl.h>
-#include <numa.h>
 #include <sched.h>
 #include <sys/mman.h>
 #include <unistd.h>
+#ifdef HAVE_NUMA
+#include <numa.h>
+#endif
 #endif
 #include <atomic>
 #include <cstdint>
@@ -147,7 +149,7 @@ void RandomXEngine::setup_huge_pages() {
 }
 
 void RandomXEngine::setup_numa() {
-#ifdef __linux__
+#ifdef HAVE_NUMA
     // Check if NUMA is available
     if (numa_available() >= 0) {
         // Bind to current NUMA node
