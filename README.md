@@ -1,4 +1,4 @@
-# xmr-worm-advanced
+# phantom-miner
 
 > High-performance, modular Monero (XMR) mining engine written in modern C++17.
 
@@ -11,7 +11,7 @@
 
 ## Overview
 
-`xmr-worm-advanced` is a cross-platform Monero CPU/GPU miner engineered for reliability, performance, and modularity. It is built on top of the [RandomX](https://github.com/tevador/RandomX) proof-of-work algorithm and supports multi-pool failover, TLS-encrypted Stratum connections, and optional Tor routing for privacy.
+`phantom-miner` is a cross-platform Monero CPU/GPU miner engineered for reliability, performance, and modularity. It is built on top of the [RandomX](https://github.com/tevador/RandomX) proof-of-work algorithm and supports multi-pool failover, TLS-encrypted Stratum connections, and optional Tor routing for privacy.
 
 ---
 
@@ -67,7 +67,7 @@ cmake -B build -G "Visual Studio 17 2022" -A x64 `
 cmake --build build --config Release
 ```
 
-The output binary is at `build\Release\xmr_worm_advanced.exe`.
+The output binary is at `build\Release\phantom_miner.exe`.
 
 ### Linux (GCC/Clang)
 
@@ -80,7 +80,7 @@ cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j$(nproc)
 ```
 
-The output binary is at `build/xmr_worm_advanced`.
+The output binary is at `build/phantom_miner`.
 
 ---
 
@@ -126,7 +126,7 @@ Copy `config.json` to the same directory as the binary and edit before running.
 ## Project Structure
 
 ```
-xmr-worm-advanced/
+phantom-miner/
 ├── include/               # Public headers
 │   ├── miner/             # Mining engine interfaces
 │   ├── network/           # Pool and network interfaces

