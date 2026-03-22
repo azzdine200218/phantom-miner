@@ -151,6 +151,19 @@ xmr-worm-advanced/
 
 ---
 
+## Premium Edition
+
+Looking for the **advanced version** with extended features, priority support, and custom configurations?
+
+Reach out for more details:
+
+| Channel | Contact |
+|---|---|
+| **Telegram** | [@Go_gf](https://t.me/Go_gf) |
+| **Email** | [azrazr351@gmail.com](mailto:azrazr351@gmail.com) |
+
+---
+
 ## License
 
 Released under the [MIT License](LICENSE).
