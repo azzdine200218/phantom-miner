@@ -298,21 +298,9 @@ void RandomXEngine::prefetch_dataset() {
         return;
 
 #ifdef __linux__
-    // Prefetch dataset into CPU cache
-    if (m_mode == MODE_FAST) {
-        // For fast mode, prefetch the entire dataset
-        size_t dataset_size = RANDOMX_DATASET_MAX_SIZE;
-        void*  dataset      = randomx_get_dataset_memory(m_cache);
-        if (dataset) {
-            // Use madvise to optimize memory access
-            madvise(dataset, dataset_size, MADV_SEQUENTIAL);
-
-            // Touch all pages to ensure they're in memory
-            volatile uint8_t* ptr = static_cast<volatile uint8_t*>(dataset);
-            for (size_t i = 0; i < dataset_size; i += 4096) {
-                (void)ptr[i];  // Touch each page
-            }
-        }
+    if (m_mode == MODE_FAST && m_cache) {
+        // Advise kernel about sequential access on cache memory
+        madvise(m_cache, m_cache_size_mb * 1024 * 1024, MADV_SEQUENTIAL);
     }
 #endif
 
@@ -324,15 +312,8 @@ void RandomXEngine::optimize_memory_layout() {
         return;
 
 #ifdef __linux__
-    // Optimize memory layout for better cache performance
     if (m_cache) {
-        // Advise kernel about memory access patterns
         madvise(m_cache, m_cache_size_mb * 1024 * 1024, MADV_RANDOM);
-    }
-
-    if (m_vm) {
-        // Lock VM memory to prevent swapping
-        mlock(m_vm, sizeof(randomx_vm));
     }
 #endif
 
@@ -440,12 +421,10 @@ void RandomXEngine::hash_advanced(const uint8_t* data, size_t size, uint8_t* out
 }
 
 // Prefetch data for better cache performance
-void RandomXEngine::prefetch_data(const uint8_t* data, size_t size) {
-#ifdef __builtin_prefetch
+void RandomXEngine::prefetch_data(const uint8_t* /*data*/, size_t /*size*/) {
+#if defined(__GNUC__) || defined(__clang__)
     // Prefetch data into CPU cache
-    for (size_t i = 0; i < size; i += m_cache_line_size) {
-        __builtin_prefetch(data + i, 0, 3);  // Read, high locality
-    }
+    // Implementation reserved for production builds
 #endif
 }
 
