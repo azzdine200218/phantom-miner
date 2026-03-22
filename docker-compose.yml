@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  xmr-worm:
+    build: .
+    container_name: xmr-worm-advanced
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./config.json:/app/config.json
+    environment:
+      - TZ=UTC

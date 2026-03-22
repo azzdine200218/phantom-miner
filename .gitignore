@@ -1,0 +1,46 @@
+# Build directories
+build/
+build_*/
+cmake-build-*/
+
+# Compiled binaries
+xmr_worm_advanced
+*.exe
+*.out
+
+# Object files
+*.o
+*.obj
+
+# Libraries
+*.a
+*.so
+*.dylib
+*.lib
+*.dll
+
+# Debug files
+*.dSYM/
+*.pdb
+*.ilk
+*.iobj
+*.ipdb
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# vcpkg
+vcpkg_installed/

